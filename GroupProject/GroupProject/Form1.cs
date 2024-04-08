@@ -144,8 +144,7 @@ namespace GroupProject
                 List<Card> hand = players[playerIndex].Hand;
                 FlowLayoutPanel flowLayoutPanel = GetPlayerFlowLayout(playerIndex);
                 Console.WriteLine($"Layout panel for player {playerIndex + 1}, found: {flowLayoutPanel != null}");
-                //string flowLayoutPanelName = "flowLayoutPanel" + (playerIndex + 1);
-                //FlowLayoutPanel flowLayoutPanel = (FlowLayoutPanel)this.Controls.Find(flowLayoutPanelName, true).FirstOrDefault();
+               
 
                 if (flowLayoutPanel != null)
                 {
@@ -165,8 +164,8 @@ namespace GroupProject
 
             if (flowLayoutPanel != null)
             {
-                flowLayoutPanel.Controls.Clear();  // Clear the current card display
-                PopulatePlayersHand(players[playerIndex].Hand, flowLayoutPanel);  // Repopulate it
+                flowLayoutPanel.Controls.Clear();  
+                PopulatePlayersHand(players[playerIndex].Hand, flowLayoutPanel);  
             }
             else
             {
@@ -177,9 +176,9 @@ namespace GroupProject
 
         private FlowLayoutPanel GetPlayerFlowLayout(int playerIndex)
         {
-            // Construct the name of the FlowLayoutPanel based on the player index
+            
             string flowLayoutPanelName = "flowLayoutPanel" + (playerIndex + 1).ToString();
-            // Find the FlowLayoutPanel by name within the Form's Controls
+            
             FlowLayoutPanel flowLayoutPanel = this.Controls.Find(flowLayoutPanelName, true).FirstOrDefault() as FlowLayoutPanel;
 
             if (flowLayoutPanel == null)
@@ -254,95 +253,45 @@ namespace GroupProject
             }
 
 
-            // Shuffle the deck after dealing cards
+            
             dealerDeck.Shuffle();
 
             return firstDealer;
         }
-
-
-        //private void PlayGame()
-        //{
-        //    // Start a loop representing each round of the game
-        //    for (int round = 0; round < 13; round++)
-        //    {
-        //        // Reset the heartsPlayed flag for each round
-        //        heartsPlayed = false;
-
-        //        // Determine the lead player for each round
-        //        Player leadPlayer = firstDealer; // Start with the first dealer
-
-        //        foreach (Player currentPlayer in players)
-        //        {
-        //            // Determine the valid cards the current player can play
-        //            List<Card> validCards = GetValidCardsToPlay(currentPlayer, leadPlayer);
-
-        //            // Allow the player to play a card
-        //            Card playedCard = currentPlayer.PlayCard(validCards);
-
-        //            // Update the game state or UI with the played card
-
-        //            // Check if hearts have been played
-        //            if (!heartsPlayed && playedCard.Suit == Suit.Hearts)
-        //            {
-        //                heartsPlayed = true;
-        //            }
-
-
-        //        }
-
-        //        // Determine the winner of the trick
-        //        Player trickWinner = DetermineTrickWinner(leadPlayer, GetCardsPlayedInTrick(players));
-
-        //        // Update first dealer for the next round
-        //        firstDealer = trickWinner;
-
-        //        // Handle the end of the round, score counting, etc.
-        //        CalculateScores();
-        //        UpdateScoresDisplay();
-
-
-        //    }
-        //    // Game loop ends when all rounds are completed
-        //    CalculateScores();
-        //    UpdateScoresDisplay();
-        //    PopulatePlayersHand(GetCurrentPlayer().Hand, flowLayoutPanel4);
-        //}
-
         private List<Card> GetValidCardsToPlay(Player player, Player leadPlayer)
         {
             Console.WriteLine("Called GetValidCardsToPlay");
             Console.WriteLine($"Current Player: {player.Name}, Lead Player: {leadPlayer?.Name}");
 
             List<Card> validCards = new List<Card>();
-            Card leadCard = (leadPlayer != player) ? leadPlayer?.LastPlayedCard : null;  // Check if lead player has played a card
+            Card leadCard = (leadPlayer != player) ? leadPlayer?.LastPlayedCard : null;  
 
-            if (player == leadPlayer)  // If the current player is the lead player
+            if (player == leadPlayer)  
             {
-                if (!heartsPlayed)  // Hearts have not been broken
+                if (!heartsPlayed)  
                 {
                     validCards = player.Hand.Where(card => card.Suit != Suit.Hearts).ToList();
-                    if (validCards.Count == 0)  // Only allow hearts if no other suits are available
+                    if (validCards.Count == 0)  
                     {
-                        validCards = new List<Card>(player.Hand);  // Allow all cards if only hearts are in hand
+                        validCards = new List<Card>(player.Hand); 
                     }
                 }
                 else
                 {
-                    validCards = new List<Card>(player.Hand);  // Allow any card if hearts are broken
+                    validCards = new List<Card>(player.Hand);  
                 }
             }
-            else  // Logic for following players
+            else  
             {
-                if (leadCard != null)  // There is a lead card to follow
+                if (leadCard != null)  
                 {
                     validCards = player.Hand.Where(card => card.Suit == leadCard.Suit).ToList();
-                    if (validCards.Count == 0)  // If the player cannot follow suit
+                    if (validCards.Count == 0) 
                     {
-                        validCards = new List<Card>(player.Hand);  // They can play any card
+                        validCards = new List<Card>(player.Hand);  
                     }
                 }
-                else  // This block is theoretically not needed as lead player should always play first
+                else  
                 {
                     validCards = new List<Card>(player.Hand);
                 }
@@ -359,45 +308,45 @@ namespace GroupProject
 
         private void UpdateGameAfterCardPlayed(Player currentPlayer, Card playedCard)
         {
-            // Mark hearts as played if a heart card is played and they haven't been broken yet
+            
             if (playedCard.Suit == Suit.Hearts && !heartsPlayed)
             {
                 heartsPlayed = true;
                 Console.WriteLine("Hearts have now been broken.");
             }
 
-            // Check if all players have played to move to the next round
+            
             if (AllPlayersHavePlayed())
             {
                 Player trickWinner = DetermineTrickWinner(leadPlayer, GetCardsPlayedInTrick(players));
-                leadPlayer = trickWinner;  // Update the lead player for the next round
-                currentPlayerIndex = players.IndexOf(trickWinner);  // Update current player to the trick winner
+                leadPlayer = trickWinner;  
+                currentPlayerIndex = players.IndexOf(trickWinner);  
             }
             else
             {
-                currentPlayerIndex = (currentPlayerIndex + 1) % players.Count;  // Move to the next player
+                currentPlayerIndex = (currentPlayerIndex + 1) % players.Count; 
             }
 
-            UpdateScoresDisplay();  // Refresh UI with the latest scores
+            UpdateScoresDisplay();  
         }
 
         private bool AllPlayersHavePlayed()
         {
-            // Check if all players have played their cards for the current round
+            
             return players.All(p => p.LastPlayedCard != null);
         }
 
 
         private Player DetermineTrickWinner(Player leadPlayer, List<Card> cardsPlayed)
         {
-            Suit leadSuit = cardsPlayed.First().Suit; // Get the lead suit of the trick
-            Card highestCard = cardsPlayed.First(); // Assume the first card played is the highest initially
-            Player trickWinner = leadPlayer; // Assume the lead player is the winner initially
+            Suit leadSuit = cardsPlayed.First().Suit; 
+            Card highestCard = cardsPlayed.First(); 
+            Player trickWinner = leadPlayer; 
 
             // Loop through the cards played in the trick
-            foreach (var card in cardsPlayed.Skip(1)) // Skip the first card since it's already assumed to be the highest
+            foreach (var card in cardsPlayed.Skip(1)) 
             {
-                // If the current card is of the lead suit and has a higher value than the current highest card
+                
                 if (card.Suit == leadSuit && card.Value > highestCard.Value)
                 {
                     highestCard = card;
@@ -439,14 +388,14 @@ namespace GroupProject
                 score += heartCount;
                 if (hasQueenOfSpades)
                 {
-                    score += 13; // Queen of Spades is worth 13 points
+                    score += 13; 
                 }
 
                 // Update the player's score
                 player.Score = score;
             }
 
-            // Now you can display or use the scores as needed
+           
         }
 
         private void CheckEndGameCondition(int scoreLimit)
@@ -456,7 +405,7 @@ namespace GroupProject
                 if (player.Score >= scoreLimit)
                 {
                     MessageBox.Show(player.Name + " has won the game with a score of " + player.Score + "!");
-                    // You can add any additional logic here for ending the game or resetting the scores
+                   
                     return;
                 }
             }
@@ -482,8 +431,8 @@ namespace GroupProject
             if (validCards.Contains(selectedCard))
             {
                 Console.WriteLine("Card played successfully.");
-                currentPlayer.PlayCard(selectedCard); // This assumes PlayCard just removes the card from the hand
-                UpdateGameAfterCardPlayed(currentPlayer, selectedCard); // This will handle game logic after a card is played
+                currentPlayer.PlayCard(selectedCard); 
+                UpdateGameAfterCardPlayed(currentPlayer, selectedCard); 
                 RefreshPlayerHandDisplay(players.IndexOf(currentPlayer));
                 AddCardToListView(selectedCard);
             }
@@ -509,14 +458,14 @@ namespace GroupProject
             listView1.View = View.Details;
             listView1.Columns.Add("Value", 70);
             listView1.Columns.Add("Suit", 70);
-            listView1.FullRowSelect = true;  // Optional, ensures full row is selectable
+            listView1.FullRowSelect = true;
         }
 
         private void AddCardToListView(Card card)
         {
             ListViewItem item = new ListViewItem(card.Value.ToString());
             item.SubItems.Add(card.Suit.ToString());
-            listView1.Items.Add(item); // Ensure this is the correct ListView name
+            listView1.Items.Add(item); 
         }
     }
 }
