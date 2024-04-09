@@ -74,7 +74,7 @@ namespace GroupProject
                 cardButton.Click += CardButton_Click;
                 cardButton.Tag = card;
 
-                Console.WriteLine($"Button for {card.Value} of {card.Suit} created");
+                //Console.WriteLine($"Button for {card.Value} of {card.Suit} created");
 
                 flowLayoutPanel.Controls.Add(cardButton);
             }
@@ -132,7 +132,7 @@ namespace GroupProject
             {
                 List<Card> hand = players[playerIndex].Hand;
                 FlowLayoutPanel flowLayoutPanel = GetPlayerFlowLayout(playerIndex);
-                Console.WriteLine($"Layout panel for player {playerIndex + 1}, found: {flowLayoutPanel != null}");
+                
 
 
                 if (flowLayoutPanel != null)
@@ -148,7 +148,7 @@ namespace GroupProject
         private void RefreshPlayerHandDisplay(int playerIndex)
         {
             FlowLayoutPanel flowLayoutPanel = GetPlayerFlowLayout(playerIndex);
-            Console.WriteLine($"Retrieving layout panel for Player {playerIndex + 1}, found: {flowLayoutPanel != null}");  // Debug output
+             
 
             if (flowLayoutPanel != null)
             {
@@ -292,7 +292,7 @@ namespace GroupProject
         {
             if (AllPlayersHavePlayed())
             {
-                // Create a dictionary to keep track of who played which card
+                // A dictionary to keep track of who played which card
                 Dictionary<Card, Player> cardPlayerDict = new Dictionary<Card, Player>();
 
                 foreach (Player player in players)
@@ -312,7 +312,7 @@ namespace GroupProject
                 leadPlayer = trickWinner;
                 currentPlayerIndex = players.IndexOf(trickWinner);
 
-                // Add the played cards to the trick winner's pile of taken cards
+                // Add the played cards to the trick winner's pile of cards
                 foreach (Card card in GetCardsPlayedInTrick(players))
                 {
                     trickWinner.TakenCards.Add(card);
@@ -357,7 +357,7 @@ namespace GroupProject
                     {
                         score += 1;
                     }
-                    else if (card.Suit == Suit.Spades && card.Value == 12) // Assuming 12 is the value for Queen
+                    else if (card.Suit == Suit.Spades && card.Value == 12) 
                     {
                         score += 5;
                     }
@@ -374,7 +374,7 @@ namespace GroupProject
 
         private Player DetermineTrickWinner(Player leadPlayer, List<Card> cardsPlayed, Dictionary<Card, Player> cardPlayerDict)
         {
-            // Initialize with the first card as the highest card to compare against
+            // Initialize the highest card as the lead players last played card
             Card highestCard = leadPlayer.LastPlayedCard;
             // set the lead player as the winner if anything fails
             Player trickWinner = leadPlayer; 
@@ -386,14 +386,14 @@ namespace GroupProject
                 if (playerWhoPlayed == null)
                 {
                     Console.WriteLine($"Error: Card {card.Value} of {card.Suit} is not found in any player's hand.");
-                    continue; // Skip this card if no owner is found
+                    continue; 
                 }
 
                 // Check if this card is of the lead suit and has a higher value than the current highest card
                 if (card.Suit == highestCard.Suit && card.Value > highestCard.Value)
                 {
                     highestCard = card;
-                    trickWinner = playerWhoPlayed; // Update the trick winner
+                    trickWinner = playerWhoPlayed; 
                     Console.WriteLine($"New highest card found: {card.Value} of {card.Suit} played by {playerWhoPlayed.Name}.");
                 }
             }
@@ -414,7 +414,7 @@ namespace GroupProject
 
             foreach (var player in players)
             {
-                // Assuming each player keeps track of the last played card
+                
                 Card lastPlayedCard = player.LastPlayedCard;
                 if (lastPlayedCard != null)
                 {
