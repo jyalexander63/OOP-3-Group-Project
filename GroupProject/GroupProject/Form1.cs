@@ -31,15 +31,15 @@ namespace GroupProject
             ToolTip tooltip3 = new ToolTip();
             toolTip3.SetToolTip(btnView, "Reveal your cards");
         }
-
         private Player GetCurrentPlayer()
         {
+            if (currentPlayerIndex < 0 || currentPlayerIndex >= players.Count)
+            {
+                Console.WriteLine($"Error: currentPlayerIndex out of range. Index: {currentPlayerIndex}, Players count: {players.Count}");
+                throw new ArgumentOutOfRangeException(nameof(currentPlayerIndex), "Index was out of range. Must be non-negative and less than the size of the collection.");
+            }
             return players[currentPlayerIndex];
         }
-
-
-
-
         private void UpdateScoresDisplay()
         {
             lblPlayer1Score.Text = $"Score: {players[0].Score}";
@@ -47,7 +47,6 @@ namespace GroupProject
             lblPlayer3Score.Text = $"Score: {players[2].Score}";
             lblPlayer4Score.Text = $"Score: {players[3].Score}";
         }
-
         private void PopulatePlayersHand(List<Card> playerHand, FlowLayoutPanel flowLayoutPanel)
         {
             int desiredWidth = 65;
@@ -79,9 +78,6 @@ namespace GroupProject
                 flowLayoutPanel.Controls.Add(cardButton);
             }
         }
-
-
-
         private void btnQuit_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -102,14 +98,8 @@ namespace GroupProject
 
             MessageBox.Show($"{leadPlayer.Name} starts the game");
             DealCardsToPlayers();
-            
+
         }
-
-
-        
-
-      
-
         private void InitializePlayers()
         {
             players = new List<Player>
@@ -120,13 +110,11 @@ namespace GroupProject
                 new Player("Player 4")
             };
         }
-
         private void InitializeDeck()
         {
             deck = new Deck();
             deck.Shuffle();
         }
-
         private void DealCardsToPlayers()
         {
             foreach (Player player in players)
@@ -144,7 +132,7 @@ namespace GroupProject
                 List<Card> hand = players[playerIndex].Hand;
                 FlowLayoutPanel flowLayoutPanel = GetPlayerFlowLayout(playerIndex);
                 Console.WriteLine($"Layout panel for player {playerIndex + 1}, found: {flowLayoutPanel != null}");
-               
+
 
                 if (flowLayoutPanel != null)
                 {
@@ -152,11 +140,10 @@ namespace GroupProject
                 }
                 else
                 {
-                    MessageBox.Show($"FlowLayoutPanel '{"flowLayoutPanel" + (playerIndex +1)}' not found,");
+                    MessageBox.Show($"FlowLayoutPanel '{"flowLayoutPanel" + (playerIndex + 1)}' not found,");
                 }
             }
         }
-
         private void RefreshPlayerHandDisplay(int playerIndex)
         {
             FlowLayoutPanel flowLayoutPanel = GetPlayerFlowLayout(playerIndex);
@@ -164,21 +151,19 @@ namespace GroupProject
 
             if (flowLayoutPanel != null)
             {
-                flowLayoutPanel.Controls.Clear();  
-                PopulatePlayersHand(players[playerIndex].Hand, flowLayoutPanel);  
+                flowLayoutPanel.Controls.Clear();
+                PopulatePlayersHand(players[playerIndex].Hand, flowLayoutPanel);
             }
             else
             {
                 MessageBox.Show("Error: Unable to find FlowLayoutPanel for player " + (playerIndex + 1));
             }
         }
-
-
         private FlowLayoutPanel GetPlayerFlowLayout(int playerIndex)
         {
-            
+
             string flowLayoutPanelName = "flowLayoutPanel" + (playerIndex + 1).ToString();
-            
+
             FlowLayoutPanel flowLayoutPanel = this.Controls.Find(flowLayoutPanelName, true).FirstOrDefault() as FlowLayoutPanel;
 
             if (flowLayoutPanel == null)
@@ -188,11 +173,6 @@ namespace GroupProject
 
             return flowLayoutPanel;
         }
-
-
-
-
-
         private int GetImageIndexForCard(Card card)
         {
             int imageIndex = -1;
@@ -220,9 +200,6 @@ namespace GroupProject
 
             return imageIndex;
         }
-
-
-
         private Player DetermineFirstDealer()
         {
             Deck dealerDeck = new Deck();
@@ -251,11 +228,7 @@ namespace GroupProject
             {
                 dealerDeck.Cards.Add(card);
             }
-
-
-            
             dealerDeck.Shuffle();
-
             return firstDealer;
         }
         private List<Card> GetValidCardsToPlay(Player player, Player leadPlayer)
@@ -264,34 +237,34 @@ namespace GroupProject
             Console.WriteLine($"Current Player: {player.Name}, Lead Player: {leadPlayer?.Name}");
 
             List<Card> validCards = new List<Card>();
-            Card leadCard = (leadPlayer != player) ? leadPlayer?.LastPlayedCard : null;  
+            Card leadCard = (leadPlayer != player) ? leadPlayer?.LastPlayedCard : null;
 
-            if (player == leadPlayer)  
+            if (player == leadPlayer)
             {
-                if (!heartsPlayed)  
+                if (!heartsPlayed)
                 {
                     validCards = player.Hand.Where(card => card.Suit != Suit.Hearts).ToList();
-                    if (validCards.Count == 0)  
+                    if (validCards.Count == 0)
                     {
-                        validCards = new List<Card>(player.Hand); 
+                        validCards = new List<Card>(player.Hand);
                     }
                 }
                 else
                 {
-                    validCards = new List<Card>(player.Hand);  
+                    validCards = new List<Card>(player.Hand);
                 }
             }
-            else  
+            else
             {
-                if (leadCard != null)  
+                if (leadCard != null)
                 {
                     validCards = player.Hand.Where(card => card.Suit == leadCard.Suit).ToList();
-                    if (validCards.Count == 0) 
+                    if (validCards.Count == 0)
                     {
-                        validCards = new List<Card>(player.Hand);  
+                        validCards = new List<Card>(player.Hand);
                     }
                 }
-                else  
+                else
                 {
                     validCards = new List<Card>(player.Hand);
                 }
@@ -305,57 +278,86 @@ namespace GroupProject
 
             return validCards;
         }
-
-        private void UpdateGameAfterCardPlayed(Player currentPlayer, Card playedCard)
-        {
-            
-            if (playedCard.Suit == Suit.Hearts && !heartsPlayed)
-            {
-                heartsPlayed = true;
-                Console.WriteLine("Hearts have now been broken.");
-            }
-
-            
-            if (AllPlayersHavePlayed())
-            {
-                Player trickWinner = DetermineTrickWinner(leadPlayer, GetCardsPlayedInTrick(players));
-                leadPlayer = trickWinner;  
-                currentPlayerIndex = players.IndexOf(trickWinner);  
-            }
-            else
-            {
-                currentPlayerIndex = (currentPlayerIndex + 1) % players.Count; 
-            }
-
-            UpdateScoresDisplay();  
-        }
+        
 
         private bool AllPlayersHavePlayed()
         {
-            
             return players.All(p => p.LastPlayedCard != null);
         }
 
-
-        private Player DetermineTrickWinner(Player leadPlayer, List<Card> cardsPlayed)
+        private void UpdateGameAfterCardPlayed(Player currentPlayer, Card playedCard)
         {
-            Suit leadSuit = cardsPlayed.First().Suit; 
-            Card highestCard = cardsPlayed.First(); 
+            if (AllPlayersHavePlayed())
+            {
+                // Create a dictionary to keep track of who played which card
+                Dictionary<Card, Player> cardPlayerDict = new Dictionary<Card, Player>();
+
+                foreach (Player player in players)
+                {
+                    if (player.LastPlayedCard != null)
+                    {
+                        cardPlayerDict[player.LastPlayedCard] = player;
+                    }
+                }
+
+                Player trickWinner = DetermineTrickWinner(leadPlayer, GetCardsPlayedInTrick(players), cardPlayerDict);
+                Console.WriteLine($"Trick winner: {trickWinner.Name}");
+                foreach (Player player in players)
+                {
+                    Console.WriteLine($"Player in list: {player.Name}");
+                }
+                leadPlayer = trickWinner;
+                currentPlayerIndex = players.IndexOf(trickWinner);
+
+                // Reset the LastPlayedCard of each player
+                foreach (Player player in players)
+                {
+                    player.ResetLastPlayedCard();
+                }
+            }
+            else
+            {
+                currentPlayerIndex = (currentPlayerIndex + 1) % players.Count;
+            }
+
+            UpdateScoresDisplay();
+        }
+
+        private Player DetermineTrickWinner(Player leadPlayer, List<Card> cardsPlayed, Dictionary<Card, Player> cardPlayerDict)
+        {
+            // Initialize with the first card as the highest card to compare against
+            Card highestCard = cardsPlayed.First();
+            // set the lead player as the winner if anything fails
             Player trickWinner = leadPlayer; 
 
-            // Loop through the cards played in the trick
-            foreach (var card in cardsPlayed.Skip(1)) 
+            foreach (var card in cardsPlayed)
             {
-                
-                if (card.Suit == leadSuit && card.Value > highestCard.Value)
+                // Find the player who played this card
+                Player playerWhoPlayed = cardPlayerDict[card];
+                if (playerWhoPlayed == null)
+                {
+                    Console.WriteLine($"Error: Card {card.Value} of {card.Suit} is not found in any player's hand.");
+                    continue; // Skip this card if no owner is found
+                }
+
+                // Check if this card is of the lead suit and has a higher value than the current highest card
+                if (card.Suit == highestCard.Suit && card.Value > highestCard.Value)
                 {
                     highestCard = card;
-                    trickWinner = players.FirstOrDefault(player => player.Hand.Contains(card));
+                    trickWinner = playerWhoPlayed; // Update the trick winner
+                    Console.WriteLine($"New highest card found: {card.Value} of {card.Suit} played by {playerWhoPlayed.Name}.");
                 }
+            }
+
+            if (trickWinner == null)
+            {
+                Console.WriteLine("Critical Error: No trick winner determined. Defaulting to lead player.");
+                return leadPlayer;
             }
 
             return trickWinner;
         }
+
 
         private List<Card> GetCardsPlayedInTrick(List<Player> players)
         {
@@ -373,66 +375,27 @@ namespace GroupProject
 
             return cardsPlayed;
         }
-
-        private void CalculateScores()
-        {
-            foreach (Player player in players)
-            {
-                int score = 0;
-
-                // Count the number of hearts and check for the Queen of Spades
-                int heartCount = player.Hand.Count(card => card.Suit == Suit.Hearts);
-                bool hasQueenOfSpades = player.Hand.Any(card => card.Suit == Suit.Spades && card.Value == 12);
-
-                // Assign points for hearts and the Queen of Spades
-                score += heartCount;
-                if (hasQueenOfSpades)
-                {
-                    score += 13; 
-                }
-
-                // Update the player's score
-                player.Score = score;
-            }
-
-           
-        }
-
-        private void CheckEndGameCondition(int scoreLimit)
-        {
-            foreach (var player in players)
-            {
-                if (player.Score >= scoreLimit)
-                {
-                    MessageBox.Show(player.Name + " has won the game with a score of " + player.Score + "!");
-                   
-                    return;
-                }
-            }
-        }
-
-
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
-
         private void CardButton_Click(object sender, EventArgs e)
         {
-            
+
             Button clickedButton = (Button)sender;
             Card selectedCard = (Card)clickedButton.Tag;
             Player currentPlayer = GetCurrentPlayer();
+            Console.WriteLine($"Current player index: {currentPlayerIndex}");
 
             List<Card> validCards = GetValidCardsToPlay(currentPlayer, leadPlayer);
             Console.WriteLine($"Trying to play {selectedCard.Value} of {selectedCard.Suit}");
-           
+
 
             if (validCards.Contains(selectedCard))
             {
                 Console.WriteLine("Card played successfully.");
-                currentPlayer.PlayCard(selectedCard); 
-                UpdateGameAfterCardPlayed(currentPlayer, selectedCard); 
+                currentPlayer.PlayCard(selectedCard);
+                UpdateGameAfterCardPlayed(currentPlayer, selectedCard);
                 RefreshPlayerHandDisplay(players.IndexOf(currentPlayer));
                 AddCardToListView(selectedCard);
             }
@@ -440,19 +403,16 @@ namespace GroupProject
             {
                 MessageBox.Show("Invalid Card Selected");
             }
-            
-        }
 
+        }
         private void toolTip1_Popup(object sender, PopupEventArgs e)
         {
 
         }
-
         private void flowLayoutPanel_Paint(object sender, PaintEventArgs e)
         {
 
         }
-
         private void InitializeListView()
         {
             listView1.View = View.Details;
@@ -460,12 +420,15 @@ namespace GroupProject
             listView1.Columns.Add("Suit", 70);
             listView1.FullRowSelect = true;
         }
-
         private void AddCardToListView(Card card)
         {
             ListViewItem item = new ListViewItem(card.Value.ToString());
             item.SubItems.Add(card.Suit.ToString());
-            listView1.Items.Add(item); 
+            listView1.Items.Add(item);
+        }
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

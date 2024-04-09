@@ -44,25 +44,11 @@ namespace GroupProject
             get { return lastPlayedCard; }
         }
 
-        public Card PlayCard(List<Card> validCards)
+        public void ResetLastPlayedCard()
         {
-            if (validCards.Count == 0)
-            {
-                throw new InvalidOperationException("No valid cards to play.");
-            }
-
-            Card cardToPlay = validCards[0];
-
-            if (!hand.Contains(cardToPlay))
-            {
-                throw new InvalidOperationException("Cannot play card. Card not found in player's hand.");
-            }
-
-            hand.Remove(cardToPlay);
-            lastPlayedCard = cardToPlay;
-
-            return cardToPlay;
+            lastPlayedCard = null;
         }
+
 
         public int Score { get; set; }
     }

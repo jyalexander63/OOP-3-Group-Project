@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "G:\\OOP-PROJECT\\GroupProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6D9E8DF9-987E-44A0-8445-63EC48AFD356}|GroupProject\\GroupProject.csproj|g:\\oop-project\\groupproject\\groupproject\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{6D9E8DF9-987E-44A0-8445-63EC48AFD356}|GroupProject\\GroupProject.csproj|solutionrelative:groupproject\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{6D9E8DF9-987E-44A0-8445-63EC48AFD356}|GroupProject\\GroupProject.csproj|g:\\oop-project\\groupproject\\groupproject\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D9E8DF9-987E-44A0-8445-63EC48AFD356}|GroupProject\\GroupProject.csproj|solutionrelative:groupproject\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6D9E8DF9-987E-44A0-8445-63EC48AFD356}|GroupProject\\GroupProject.csproj|G:\\OOP-PROJECT\\GroupProject\\groupproject\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6D9E8DF9-987E-44A0-8445-63EC48AFD356}|GroupProject\\GroupProject.csproj|solutionrelative:groupproject\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6D9E8DF9-987E-44A0-8445-63EC48AFD356}|GroupProject\\GroupProject.csproj|g:\\oop-project\\groupproject\\groupproject\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D9E8DF9-987E-44A0-8445-63EC48AFD356}|GroupProject\\GroupProject.csproj|solutionrelative:groupproject\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D9E8DF9-987E-44A0-8445-63EC48AFD356}|GroupProject\\GroupProject.csproj|G:\\OOP-PROJECT\\GroupProject\\groupproject\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6D9E8DF9-987E-44A0-8445-63EC48AFD356}|GroupProject\\GroupProject.csproj|solutionrelative:groupproject\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,27 +27,39 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Player.cs",
+              "DocumentMoniker": "G:\\OOP-PROJECT\\GroupProject\\GroupProject\\Player.cs",
+              "RelativeDocumentMoniker": "GroupProject\\Player.cs",
+              "ToolTip": "G:\\OOP-PROJECT\\GroupProject\\GroupProject\\Player.cs",
+              "RelativeToolTip": "GroupProject\\Player.cs",
+              "ViewState": "AQIAAC0AAAAAAAAAAAAmwDYAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T16:39:39.945Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Form1.cs",
               "DocumentMoniker": "G:\\OOP-PROJECT\\GroupProject\\GroupProject\\Form1.cs",
               "RelativeDocumentMoniker": "GroupProject\\Form1.cs",
               "ToolTip": "G:\\OOP-PROJECT\\GroupProject\\GroupProject\\Form1.cs",
               "RelativeToolTip": "GroupProject\\Form1.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAWAAAA",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAAEkBAABCAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-01T15:49:08.465Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "G:\\OOP-PROJECT\\GroupProject\\GroupProject\\Form1.cs",
               "RelativeDocumentMoniker": "GroupProject\\Form1.cs",
               "ToolTip": "G:\\OOP-PROJECT\\GroupProject\\GroupProject\\Form1.cs [Design]",
               "RelativeToolTip": "GroupProject\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-01T06:46:31.58Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-04-01T06:46:31.58Z"
             }
           ]
         }
