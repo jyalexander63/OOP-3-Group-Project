@@ -18,6 +18,7 @@ namespace GroupProject
         private Player firstDealer;
         private int currentPlayerIndex;
         private Player leadPlayer;
+        private int roundCounter = 0;
         public Form1()
         {
             InitializeComponent();
@@ -285,6 +286,8 @@ namespace GroupProject
             return players.All(p => p.LastPlayedCard != null);
         }
 
+
+
         private void UpdateGameAfterCardPlayed(Player currentPlayer, Card playedCard)
         {
             if (AllPlayersHavePlayed())
@@ -309,10 +312,30 @@ namespace GroupProject
                 leadPlayer = trickWinner;
                 currentPlayerIndex = players.IndexOf(trickWinner);
 
+                // Add the played cards to the trick winner's pile of taken cards
+                foreach (Card card in GetCardsPlayedInTrick(players))
+                {
+                    trickWinner.TakenCards.Add(card);
+                }
+
                 // Reset the LastPlayedCard of each player
                 foreach (Player player in players)
                 {
                     player.ResetLastPlayedCard();
+                }
+
+                roundCounter++;
+                if (roundCounter == 13)
+                {
+                    CalculateScores();
+
+                    lblPlayer1Score.Text = $"Score: {players[0].Score}";
+                    lblPlayer2Score.Text = $"Score: {players[1].Score}";
+                    lblPlayer3Score.Text = $"Score: {players[2].Score}";
+                    lblPlayer4Score.Text = $"Score: {players[3].Score}";
+
+                    Player winner = players.OrderBy(player => player.Score).First();
+                    MessageBox.Show($"{winner.Name} Wins! with a score of {winner.Score}!");
                 }
             }
             else
@@ -323,10 +346,36 @@ namespace GroupProject
             UpdateScoresDisplay();
         }
 
+        private void CalculateScores()
+        {
+            foreach (Player player in players)
+            {
+                int score = 0;
+                foreach (Card card in player.TakenCards)
+                {
+                    if (card.Suit == Suit.Hearts)
+                    {
+                        score += 1;
+                    }
+                    else if (card.Suit == Suit.Spades && card.Value == 12) // Assuming 12 is the value for Queen
+                    {
+                        score += 5;
+                    }
+                }
+                player.Score = score;
+            }
+
+            lblPlayer1Score.Text = $"Score: {players[0].Score}";
+            lblPlayer2Score.Text = $"Score: {players[1].Score}";
+            lblPlayer3Score.Text = $"Score: {players[2].Score}";
+            lblPlayer4Score.Text = $"Score: {players[3].Score}";
+        }
+
+
         private Player DetermineTrickWinner(Player leadPlayer, List<Card> cardsPlayed, Dictionary<Card, Player> cardPlayerDict)
         {
             // Initialize with the first card as the highest card to compare against
-            Card highestCard = cardsPlayed.First();
+            Card highestCard = leadPlayer.LastPlayedCard;
             // set the lead player as the winner if anything fails
             Player trickWinner = leadPlayer; 
 
@@ -405,14 +454,6 @@ namespace GroupProject
             }
 
         }
-        private void toolTip1_Popup(object sender, PopupEventArgs e)
-        {
-
-        }
-        private void flowLayoutPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
         private void InitializeListView()
         {
             listView1.View = View.Details;
@@ -425,10 +466,6 @@ namespace GroupProject
             ListViewItem item = new ListViewItem(card.Value.ToString());
             item.SubItems.Add(card.Suit.ToString());
             listView1.Items.Add(item);
-        }
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }

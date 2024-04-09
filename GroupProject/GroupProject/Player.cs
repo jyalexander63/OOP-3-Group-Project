@@ -9,13 +9,16 @@ namespace GroupProject
     internal class Player
     {
         public string Name { get; }
+        public List<Card> TakenCards { get; private set;  }
         private List<Card> hand;
         private Card lastPlayedCard;
+        
 
         public Player(string name)
         {
             Name = name;
             hand = new List<Card>();
+            TakenCards = new List<Card>();
             Score = 0;
         }
 
