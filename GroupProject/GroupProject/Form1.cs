@@ -50,21 +50,27 @@ namespace GroupProject
         }
         private void PopulatePlayersHand(List<Card> playerHand, FlowLayoutPanel flowLayoutPanel)
         {
-            int desiredWidth = 65;
+            int desiredWidth = 60;
             int desiredHeight = 90;
 
             foreach (Card card in playerHand)
             {
                 Button cardButton = new Button();
-                cardButton.Text = $"{card.Value} of {card.Suit}";
-                cardButton.Size = new Size(34, 56);
-
+                //cardButton.Text = $"{card.FaceValue} of {card.Suit}";
+                cardButton.Text = $"";
+                cardButton.Size = new Size(60, 90);
 
                 int imageIndex = GetImageIndexForCard(card);
                 if (imageIndex != -1)
                 {
                     Image originalImage = imageList1.Images[imageIndex];
-                    Image resizedImage = new Bitmap(originalImage, desiredHeight, desiredWidth);
+                    Bitmap resizedImage = new Bitmap(desiredWidth, desiredHeight);
+
+                    using (Graphics g = Graphics.FromImage(resizedImage))
+                    {
+                        g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                        g.DrawImage(originalImage, 0, 0, desiredWidth, desiredHeight);
+                    }
 
                     imageList1.Images.Add(resizedImage);
 
@@ -178,39 +184,54 @@ namespace GroupProject
         {
             int imageIndex = -1;
 
-
-
+            // Calculate the base index based on the card's suit
             switch (card.Suit)
             {
-                case Suit.Hearts:
-                    imageIndex = (int)card.Value - 1;
+                case Suit.Clubs:
+                    imageIndex = 0;
                     break;
                 case Suit.Diamonds:
-                    imageIndex = 13 + (int)card.Value - 1;
+                    imageIndex = 13; // Offset of 13 for diamonds
                     break;
-                case Suit.Clubs:
-                    imageIndex = 26 + (int)card.Value - 1;
+                case Suit.Hearts:
+                    imageIndex = 26; // Offset of 26 for hearts
                     break;
                 case Suit.Spades:
-                    imageIndex = 39 + (int)card.Value - 1;
+                    imageIndex = 39; // Offset of 39 for spades
                     break;
                 default:
-
                     break;
             }
 
+            // Add an offset based on the card's value for Ace, Jack, King, and Queen
+            switch (card.Value)
+            {
+                case 14: // Ace
+                    imageIndex += 12;
+                    break;
+                case 11: // Jack
+                    imageIndex += 9;
+                    break;
+                case 13: // King
+                    imageIndex += 11;
+                    break;
+                case 12: // Queen
+                    imageIndex += 10;
+                    break;
+                default: // 2 through 10
+                    imageIndex += card.Value - 2;
+                    break;
+            }
             return imageIndex;
         }
+
         private Player DetermineFirstDealer()
         {
             Deck dealerDeck = new Deck();
             dealerDeck.Shuffle();
-
             Player firstDealer = null;
             int highestCardValue = -1;
             List<Card> drawnCards = new List<Card>();
-
-
             foreach (Player player in players)
             {
                 // Deal a card from the deck
@@ -224,7 +245,6 @@ namespace GroupProject
                     firstDealer = player;
                 }
             }
-
             foreach (Card card in drawnCards)
             {
                 dealerDeck.Cards.Add(card);
@@ -274,20 +294,15 @@ namespace GroupProject
             Console.WriteLine("Valid cards this turn:");
             foreach (var card in validCards)
             {
-                Console.WriteLine($"{card.Value} of {card.Suit}");
+                Console.WriteLine($"{card.FaceValue} of {card.Suit}");
             }
 
             return validCards;
         }
-        
-
         private bool AllPlayersHavePlayed()
         {
             return players.All(p => p.LastPlayedCard != null);
         }
-
-
-
         private void UpdateGameAfterCardPlayed(Player currentPlayer, Card playedCard)
         {
             if (AllPlayersHavePlayed())
@@ -302,7 +317,6 @@ namespace GroupProject
                         cardPlayerDict[player.LastPlayedCard] = player;
                     }
                 }
-
                 Player trickWinner = DetermineTrickWinner(leadPlayer, GetCardsPlayedInTrick(players), cardPlayerDict);
                 Console.WriteLine($"Trick winner: {trickWinner.Name}");
                 foreach (Player player in players)
@@ -345,7 +359,6 @@ namespace GroupProject
 
             UpdateScoresDisplay();
         }
-
         private void CalculateScores()
         {
             foreach (Player player in players)
@@ -364,14 +377,11 @@ namespace GroupProject
                 }
                 player.Score = score;
             }
-
             lblPlayer1Score.Text = $"Score: {players[0].Score}";
             lblPlayer2Score.Text = $"Score: {players[1].Score}";
             lblPlayer3Score.Text = $"Score: {players[2].Score}";
             lblPlayer4Score.Text = $"Score: {players[3].Score}";
         }
-
-
         private Player DetermineTrickWinner(Player leadPlayer, List<Card> cardsPlayed, Dictionary<Card, Player> cardPlayerDict)
         {
             // Initialize the highest card as the lead players last played card
@@ -385,7 +395,7 @@ namespace GroupProject
                 Player playerWhoPlayed = cardPlayerDict[card];
                 if (playerWhoPlayed == null)
                 {
-                    Console.WriteLine($"Error: Card {card.Value} of {card.Suit} is not found in any player's hand.");
+                    Console.WriteLine($"Error: Card {card.FaceValue} of {card.Suit} is not found in any player's hand.");
                     continue; 
                 }
 
@@ -394,7 +404,7 @@ namespace GroupProject
                 {
                     highestCard = card;
                     trickWinner = playerWhoPlayed; 
-                    Console.WriteLine($"New highest card found: {card.Value} of {card.Suit} played by {playerWhoPlayed.Name}.");
+                    Console.WriteLine($"New highest card found: {card.FaceValue} of {card.Suit} played by {playerWhoPlayed.Name}.");
                 }
             }
 
@@ -403,11 +413,8 @@ namespace GroupProject
                 Console.WriteLine("Critical Error: No trick winner determined. Defaulting to lead player.");
                 return leadPlayer;
             }
-
             return trickWinner;
         }
-
-
         private List<Card> GetCardsPlayedInTrick(List<Player> players)
         {
             List<Card> cardsPlayed = new List<Card>();
@@ -426,18 +433,16 @@ namespace GroupProject
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-
         }
         private void CardButton_Click(object sender, EventArgs e)
         {
-
             Button clickedButton = (Button)sender;
             Card selectedCard = (Card)clickedButton.Tag;
             Player currentPlayer = GetCurrentPlayer();
             Console.WriteLine($"Current player index: {currentPlayerIndex}");
 
             List<Card> validCards = GetValidCardsToPlay(currentPlayer, leadPlayer);
-            Console.WriteLine($"Trying to play {selectedCard.Value} of {selectedCard.Suit}");
+            Console.WriteLine($"Trying to play {selectedCard.FaceValue} of {selectedCard.Suit}");
 
 
             if (validCards.Contains(selectedCard))
@@ -463,7 +468,7 @@ namespace GroupProject
         }
         private void AddCardToListView(Card card)
         {
-            ListViewItem item = new ListViewItem(card.Value.ToString());
+            ListViewItem item = new ListViewItem(card.FaceValue.ToString());
             item.SubItems.Add(card.Suit.ToString());
             listView1.Items.Add(item);
         }

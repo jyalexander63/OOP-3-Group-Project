@@ -181,73 +181,57 @@
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "2_of_clubs.png");
-            this.imageList1.Images.SetKeyName(1, "2_of_diamonds.png");
-            this.imageList1.Images.SetKeyName(2, "2_of_hearts.png");
-            this.imageList1.Images.SetKeyName(3, "2_of_spades.png");
-            this.imageList1.Images.SetKeyName(4, "3_of_clubs.png");
-            this.imageList1.Images.SetKeyName(5, "3_of_diamonds.png");
-            this.imageList1.Images.SetKeyName(6, "3_of_hearts.png");
-            this.imageList1.Images.SetKeyName(7, "4_of_clubs.png");
-            this.imageList1.Images.SetKeyName(8, "4_of_diamonds.png");
-            this.imageList1.Images.SetKeyName(9, "4_of_hearts.png");
-            this.imageList1.Images.SetKeyName(10, "4_of_spades.png");
-            this.imageList1.Images.SetKeyName(11, "5_of_clubs.png");
-            this.imageList1.Images.SetKeyName(12, "5_of_diamonds.png");
-            this.imageList1.Images.SetKeyName(13, "5_of_spades.png");
-            this.imageList1.Images.SetKeyName(14, "6_of_clubs.png");
-            this.imageList1.Images.SetKeyName(15, "6_of_diamonds.png");
-            this.imageList1.Images.SetKeyName(16, "6_of_hearts.png");
-            this.imageList1.Images.SetKeyName(17, "6_of_spades.png");
-            this.imageList1.Images.SetKeyName(18, "7_of_clubs.png");
-            this.imageList1.Images.SetKeyName(19, "7_of_hearts.png");
-            this.imageList1.Images.SetKeyName(20, "7_of_spades.png");
-            this.imageList1.Images.SetKeyName(21, "8_of_clubs.png");
-            this.imageList1.Images.SetKeyName(22, "8_of_diamonds.png");
-            this.imageList1.Images.SetKeyName(23, "8_of_hearts.png");
-            this.imageList1.Images.SetKeyName(24, "8_of_spades.png");
-            this.imageList1.Images.SetKeyName(25, "9_of_diamonds.png");
-            this.imageList1.Images.SetKeyName(26, "9_of_hearts.png");
-            this.imageList1.Images.SetKeyName(27, "9_of_spades.png");
-            this.imageList1.Images.SetKeyName(28, "10_of_clubs.png");
-            this.imageList1.Images.SetKeyName(29, "10_of_diamonds.png");
-            this.imageList1.Images.SetKeyName(30, "10_of_hearts.png");
-            this.imageList1.Images.SetKeyName(31, "ace_of_clubs.png");
-            this.imageList1.Images.SetKeyName(32, "ace_of_diamonds.png");
-            this.imageList1.Images.SetKeyName(33, "ace_of_hearts.png");
-            this.imageList1.Images.SetKeyName(34, "ace_of_spades.png");
-            this.imageList1.Images.SetKeyName(35, "ace_of_spades2.png");
-            this.imageList1.Images.SetKeyName(36, "black_joker.png");
-            this.imageList1.Images.SetKeyName(37, "jack_of_clubs.png");
-            this.imageList1.Images.SetKeyName(38, "jack_of_clubs2.png");
-            this.imageList1.Images.SetKeyName(39, "jack_of_diamonds.png");
-            this.imageList1.Images.SetKeyName(40, "jack_of_diamonds2.png");
-            this.imageList1.Images.SetKeyName(41, "jack_of_hearts.png");
-            this.imageList1.Images.SetKeyName(42, "jack_of_hearts2.png");
-            this.imageList1.Images.SetKeyName(43, "jack_of_spades2.png");
-            this.imageList1.Images.SetKeyName(44, "king_of_clubs.png");
-            this.imageList1.Images.SetKeyName(45, "king_of_clubs2.png");
-            this.imageList1.Images.SetKeyName(46, "king_of_diamonds.png");
-            this.imageList1.Images.SetKeyName(47, "king_of_diamonds2.png");
-            this.imageList1.Images.SetKeyName(48, "king_of_hearts.png");
-            this.imageList1.Images.SetKeyName(49, "king_of_spades.png");
+            this.imageList1.Images.SetKeyName(1, "3_of_clubs.png");
+            this.imageList1.Images.SetKeyName(2, "4_of_clubs.png");
+            this.imageList1.Images.SetKeyName(3, "5_of_clubs.png");
+            this.imageList1.Images.SetKeyName(4, "6_of_clubs.png");
+            this.imageList1.Images.SetKeyName(5, "7_of_clubs.png");
+            this.imageList1.Images.SetKeyName(6, "8_of_clubs.png");
+            this.imageList1.Images.SetKeyName(7, "9_of_clubs.png");
+            this.imageList1.Images.SetKeyName(8, "10_of_clubs.png");
+            this.imageList1.Images.SetKeyName(9, "jack_of_clubs2.png");
+            this.imageList1.Images.SetKeyName(10, "queen_of_clubs2.png");
+            this.imageList1.Images.SetKeyName(11, "king_of_clubs2.png");
+            this.imageList1.Images.SetKeyName(12, "ace_of_clubs.png");
+            this.imageList1.Images.SetKeyName(13, "2_of_diamonds.png");
+            this.imageList1.Images.SetKeyName(14, "3_of_diamonds.png");
+            this.imageList1.Images.SetKeyName(15, "4_of_diamonds.png");
+            this.imageList1.Images.SetKeyName(16, "5_of_diamonds.png");
+            this.imageList1.Images.SetKeyName(17, "6_of_diamonds.png");
+            this.imageList1.Images.SetKeyName(18, "7_of_diamonds.png");
+            this.imageList1.Images.SetKeyName(19, "8_of_diamonds.png");
+            this.imageList1.Images.SetKeyName(20, "9_of_diamonds.png");
+            this.imageList1.Images.SetKeyName(21, "10_of_diamonds.png");
+            this.imageList1.Images.SetKeyName(22, "jack_of_diamonds2.png");
+            this.imageList1.Images.SetKeyName(23, "queen_of_diamonds2.png");
+            this.imageList1.Images.SetKeyName(24, "king_of_diamonds2.png");
+            this.imageList1.Images.SetKeyName(25, "ace_of_diamonds.png");
+            this.imageList1.Images.SetKeyName(26, "2_of_hearts.png");
+            this.imageList1.Images.SetKeyName(27, "3_of_hearts.png");
+            this.imageList1.Images.SetKeyName(28, "4_of_hearts.png");
+            this.imageList1.Images.SetKeyName(29, "5_of_hearts.png");
+            this.imageList1.Images.SetKeyName(30, "6_of_hearts.png");
+            this.imageList1.Images.SetKeyName(31, "7_of_hearts.png");
+            this.imageList1.Images.SetKeyName(32, "8_of_hearts.png");
+            this.imageList1.Images.SetKeyName(33, "9_of_hearts.png");
+            this.imageList1.Images.SetKeyName(34, "10_of_hearts.png");
+            this.imageList1.Images.SetKeyName(35, "jack_of_hearts2.png");
+            this.imageList1.Images.SetKeyName(36, "queen_of_hearts2.png");
+            this.imageList1.Images.SetKeyName(37, "king_of_hearts2.png");
+            this.imageList1.Images.SetKeyName(38, "ace_of_hearts.png");
+            this.imageList1.Images.SetKeyName(39, "2_of_spades.png");
+            this.imageList1.Images.SetKeyName(40, "3_of_spades.png");
+            this.imageList1.Images.SetKeyName(41, "4_of_spades.png");
+            this.imageList1.Images.SetKeyName(42, "5_of_spades.png");
+            this.imageList1.Images.SetKeyName(43, "6_of_spades.png");
+            this.imageList1.Images.SetKeyName(44, "7_of_spades.png");
+            this.imageList1.Images.SetKeyName(45, "8_of_spades.png");
+            this.imageList1.Images.SetKeyName(46, "9_of_spades.png");
+            this.imageList1.Images.SetKeyName(47, "10_of_spades.png");
+            this.imageList1.Images.SetKeyName(48, "jack_of_spades2.png");
+            this.imageList1.Images.SetKeyName(49, "queen_of_spades2.png");
             this.imageList1.Images.SetKeyName(50, "king_of_spades2.png");
-            this.imageList1.Images.SetKeyName(51, "queen_of_clubs.png");
-            this.imageList1.Images.SetKeyName(52, "queen_of_clubs2.png");
-            this.imageList1.Images.SetKeyName(53, "queen_of_diamonds.png");
-            this.imageList1.Images.SetKeyName(54, "queen_of_diamonds2.png");
-            this.imageList1.Images.SetKeyName(55, "queen_of_hearts2.png");
-            this.imageList1.Images.SetKeyName(56, "queen_of_spades.png");
-            this.imageList1.Images.SetKeyName(57, "queen_of_spades2.png");
-            this.imageList1.Images.SetKeyName(58, "red_joker.png");
-            this.imageList1.Images.SetKeyName(59, "3_of_spades.png");
-            this.imageList1.Images.SetKeyName(60, "5_of_hearts.png");
-            this.imageList1.Images.SetKeyName(61, "7_of_diamonds.png");
-            this.imageList1.Images.SetKeyName(62, "9_of_clubs.png");
-            this.imageList1.Images.SetKeyName(63, "10_of_spades.png");
-            this.imageList1.Images.SetKeyName(64, "istockphoto-180001639-612x612.jpg");
-            this.imageList1.Images.SetKeyName(65, "jack_of_spades.png");
-            this.imageList1.Images.SetKeyName(66, "king_of_hearts2.png");
-            this.imageList1.Images.SetKeyName(67, "queen_of_hearts.png");
+            this.imageList1.Images.SetKeyName(51, "ace_of_spades.png");
             // 
             // radioButton1
             // 
@@ -271,11 +255,9 @@
             this.radioButton2.Text = "100";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
-            // toolTip1
-            // 
-            // 
             // flowLayoutPanel2
             // 
+            this.flowLayoutPanel2.AutoScroll = true;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(357, 251);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(197, 273);
@@ -283,6 +265,7 @@
             // 
             // flowLayoutPanel4
             // 
+            this.flowLayoutPanel4.AutoScroll = true;
             this.flowLayoutPanel4.Location = new System.Drawing.Point(763, 251);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(197, 273);
@@ -290,6 +273,7 @@
             // 
             // flowLayoutPanel3
             // 
+            this.flowLayoutPanel3.AutoScroll = true;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(560, 251);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(197, 273);
@@ -342,6 +326,7 @@
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(154, 251);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(197, 273);
