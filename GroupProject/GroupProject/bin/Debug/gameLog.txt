@@ -1,0 +1,78 @@
+Game started at 2024-04-09 11:59:11 PM
+Player 1 was dealt: 3 of Clubs,8 of Clubs,Queen of Clubs,9 of Clubs,Jack of Clubs,5 of Clubs,Ace of Diamonds,4 of Diamonds,6 of Diamonds,8 of Hearts,8 of Diamonds,10 of Diamonds,King of Diamonds
+Player 2 was dealt: 2 of Diamonds,Ace of Spades,Ace of Clubs,King of Clubs,6 of Spades,5 of Hearts,5 of Diamonds,3 of Hearts,10 of Clubs,4 of Hearts,7 of Spades,King of Spades,Jack of Spades
+Player 3 was dealt: 7 of Hearts,Queen of Diamonds,Jack of Diamonds,10 of Spades,5 of Spades,2 of Hearts,9 of Hearts,6 of Clubs,2 of Clubs,4 of Spades,Queen of Hearts,3 of Diamonds,Ace of Hearts
+Player 4 was dealt: 3 of Spades,9 of Diamonds,9 of Spades,7 of Diamonds,7 of Clubs,Jack of Hearts,10 of Hearts,8 of Spades,4 of Clubs,2 of Spades,6 of Hearts,King of Hearts,Queen of Spades
+
+--- Round 1 ---
+
+Player 4 played: 9 of Diamonds
+Player 1 played: Ace of Diamonds
+Player 2 played: 2 of Diamonds
+Player 3 played: Jack of Diamonds
+
+--- Round 2 ---
+
+Game started at 2024-04-09 11:59:42 PM
+Player 1 was dealt: 9 of Spades,3 of Clubs,7 of Hearts,5 of Diamonds,8 of Hearts,3 of Hearts,Ace of Hearts,2 of Diamonds,7 of Spades,Ace of Clubs,Queen of Diamonds,Queen of Clubs,Ace of Spades
+Player 2 was dealt: 5 of Hearts,6 of Hearts,8 of Clubs,10 of Hearts,5 of Spades,2 of Clubs,3 of Diamonds,4 of Clubs,4 of Spades,8 of Diamonds,7 of Clubs,6 of Diamonds,King of Diamonds
+Player 3 was dealt: Ace of Diamonds,10 of Spades,9 of Hearts,Queen of Spades,7 of Diamonds,4 of Hearts,King of Clubs,3 of Spades,6 of Clubs,10 of Clubs,Jack of Clubs,Jack of Diamonds,6 of Spades
+Player 4 was dealt: 9 of Clubs,King of Spades,Jack of Spades,8 of Spades,5 of Clubs,2 of Hearts,4 of Diamonds,9 of Diamonds,Jack of Hearts,King of Hearts,10 of Diamonds,Queen of Hearts,2 of Spades
+
+--- Round 1 ---
+
+Game started at 2024-04-09 11:59:54 PM
+Player 1 was dealt: 9 of Clubs,King of Diamonds,6 of Clubs,5 of Diamonds,Queen of Diamonds,8 of Clubs,Jack of Spades,5 of Spades,9 of Diamonds,Queen of Spades,4 of Hearts,3 of Diamonds,8 of Spades
+Player 2 was dealt: 7 of Spades,10 of Spades,7 of Diamonds,Ace of Spades,Queen of Clubs,5 of Hearts,Jack of Hearts,2 of Hearts,9 of Spades,4 of Clubs,Ace of Clubs,Jack of Clubs,Ace of Diamonds
+Player 3 was dealt: 6 of Diamonds,Ace of Hearts,Jack of Diamonds,3 of Hearts,4 of Spades,8 of Hearts,King of Spades,2 of Diamonds,9 of Hearts,10 of Clubs,4 of Diamonds,6 of Hearts,Queen of Hearts
+Player 4 was dealt: 10 of Diamonds,3 of Spades,2 of Clubs,5 of Clubs,2 of Spades,10 of Hearts,7 of Clubs,King of Clubs,King of Hearts,3 of Clubs,8 of Diamonds,6 of Spades,7 of Hearts
+
+--- Round 1 ---
+
+Player 3 played: 6 of Diamonds
+Player 4 played: 10 of Diamonds
+Player 1 played: King of Diamonds
+Player 2 played: 7 of Diamonds
+
+--- Round 2 ---
+
+Player 1 played: Queen of Diamonds
+Player 2 played: Ace of Diamonds
+Player 3 played: 2 of Diamonds
+Player 4 played: 8 of Diamonds
+
+--- Round 3 ---
+
+Player 2 played: Ace of Spades
+Player 3 played: 4 of Spades
+Player 4 played: 2 of Spades
+Player 1 played: 5 of Spades
+
+--- Round 4 ---
+
+Game started at 2024-04-10 12:01:13 AM
+
+Player 1 was dealt: 3 of Spades,King of Clubs,10 of Clubs,2 of Diamonds,5 of Diamonds,6 of Spades,3 of Diamonds,8 of Hearts,9 of Spades,4 of Clubs,6 of Clubs,8 of Clubs,3 of Clubs
+Player 2 was dealt: 6 of Diamonds,Jack of Hearts,6 of Hearts,King of Spades,Jack of Spades,10 of Hearts,4 of Hearts,5 of Spades,Queen of Spades,7 of Hearts,8 of Spades,Queen of Clubs,4 of Diamonds
+Player 3 was dealt: King of Diamonds,9 of Diamonds,7 of Clubs,7 of Diamonds,10 of Spades,Queen of Hearts,2 of Hearts,7 of Spades,5 of Clubs,Ace of Hearts,10 of Diamonds,8 of Diamonds,Queen of Diamonds
+Player 4 was dealt: Ace of Diamonds,Ace of Clubs,2 of Clubs,9 of Hearts,4 of Spades,5 of Hearts,King of Hearts,Ace of Spades,Jack of Clubs,9 of Clubs,2 of Spades,Jack of Diamonds,3 of Hearts
+
+--- Round 1 ---
+
+Player 3 played: King of Diamonds
+Player 4 played: Ace of Diamonds
+Player 1 played: 2 of Diamonds
+Player 2 played: 4 of Diamonds
+
+--- Round 2 ---
+
+
+Game started at 2024-04-10 12:01:53 AM
+
+Player 1 was dealt: 2 of Spades,5 of Hearts,King of Hearts,6 of Diamonds,10 of Clubs,7 of Spades,2 of Clubs,10 of Diamonds,4 of Hearts,9 of Clubs,Queen of Spades,9 of Hearts,4 of Spades
+Player 2 was dealt: 2 of Diamonds,8 of Clubs,4 of Clubs,Queen of Hearts,10 of Hearts,King of Diamonds,6 of Clubs,Jack of Diamonds,7 of Hearts,3 of Hearts,4 of Diamonds,5 of Diamonds,10 of Spades
+Player 3 was dealt: King of Spades,9 of Spades,7 of Diamonds,3 of Spades,8 of Hearts,Jack of Spades,Jack of Hearts,Ace of Hearts,8 of Spades,2 of Hearts,5 of Clubs,6 of Hearts,Ace of Diamonds
+Player 4 was dealt: 7 of Clubs,King of Clubs,Queen of Diamonds,5 of Spades,9 of Diamonds,6 of Spades,3 of Diamonds,Jack of Clubs,Ace of Clubs,8 of Diamonds,Queen of Clubs,3 of Clubs,Ace of Spades
+
+--- Round 1 ---
+

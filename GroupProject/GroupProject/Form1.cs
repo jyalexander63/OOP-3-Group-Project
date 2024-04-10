@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace GroupProject
 {
@@ -32,6 +33,16 @@ namespace GroupProject
             ToolTip tooltip3 = new ToolTip();
             toolTip3.SetToolTip(btnView, "Reveal your cards");
         }
+
+        private void Log(string message)
+        {
+            string logFilePath = "gameLog.txt";
+            using (StreamWriter writer = new StreamWriter(logFilePath, true))
+            {
+                writer.WriteLine(message);
+            }
+        }
+
         private Player GetCurrentPlayer()
         {
             if (currentPlayerIndex < 0 || currentPlayerIndex >= players.Count)
@@ -92,7 +103,7 @@ namespace GroupProject
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-
+            Log($"\nGame started at {DateTime.Now}\n");
             InitializePlayers();
             InitializeDeck();
 
@@ -106,6 +117,8 @@ namespace GroupProject
             MessageBox.Show($"{leadPlayer.Name} starts the game");
             DealCardsToPlayers();
 
+            // Log the start of a new round
+            Log($"\n--- Round {roundCounter + 1} ---\n");
         }
         private void InitializePlayers()
         {
@@ -131,6 +144,11 @@ namespace GroupProject
                     Card card = deck.DealCard();
                     player.AddCardToHand(card);
                 }
+            }
+
+            foreach (Player player in players)
+            {
+                Log($"{player.Name} was dealt: {string.Join(",", player.Hand.Select(card => $"{card.FaceValue} of {card.Suit}"))}");
             }
 
             // Deal cards to all FlowLayoutPanel controls
@@ -251,6 +269,7 @@ namespace GroupProject
             }
             dealerDeck.Shuffle();
             return firstDealer;
+            
         }
         private List<Card> GetValidCardsToPlay(Player player, Player leadPlayer)
         {
@@ -305,6 +324,7 @@ namespace GroupProject
         }
         private void UpdateGameAfterCardPlayed(Player currentPlayer, Card playedCard)
         {
+            
             if (AllPlayersHavePlayed())
             {
                 // A dictionary to keep track of who played which card
@@ -319,10 +339,7 @@ namespace GroupProject
                 }
                 Player trickWinner = DetermineTrickWinner(leadPlayer, GetCardsPlayedInTrick(players), cardPlayerDict);
                 Console.WriteLine($"Trick winner: {trickWinner.Name}");
-                foreach (Player player in players)
-                {
-                    Console.WriteLine($"Player in list: {player.Name}");
-                }
+               
                 leadPlayer = trickWinner;
                 currentPlayerIndex = players.IndexOf(trickWinner);
 
@@ -338,7 +355,14 @@ namespace GroupProject
                     player.ResetLastPlayedCard();
                 }
 
+
+                
+
                 roundCounter++;
+
+                // Log the start of a new round
+                Log($"\n--- Round {roundCounter + 1} ---\n");
+                
                 if (roundCounter == 13)
                 {
                     CalculateScores();
@@ -436,6 +460,7 @@ namespace GroupProject
         }
         private void CardButton_Click(object sender, EventArgs e)
         {
+            
             Button clickedButton = (Button)sender;
             Card selectedCard = (Card)clickedButton.Tag;
             Player currentPlayer = GetCurrentPlayer();
@@ -444,20 +469,23 @@ namespace GroupProject
             List<Card> validCards = GetValidCardsToPlay(currentPlayer, leadPlayer);
             Console.WriteLine($"Trying to play {selectedCard.FaceValue} of {selectedCard.Suit}");
 
-
             if (validCards.Contains(selectedCard))
             {
+
                 Console.WriteLine("Card played successfully.");
+                Log($"{currentPlayer.Name} played: {selectedCard.FaceValue} of {selectedCard.Suit}");
                 currentPlayer.PlayCard(selectedCard);
                 UpdateGameAfterCardPlayed(currentPlayer, selectedCard);
                 RefreshPlayerHandDisplay(players.IndexOf(currentPlayer));
                 AddCardToListView(selectedCard);
+
+                
             }
             else
             {
                 MessageBox.Show("Invalid Card Selected");
             }
-
+            
         }
         private void InitializeListView()
         {
